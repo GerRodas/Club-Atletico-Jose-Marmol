@@ -1,4 +1,4 @@
-# Entrega1-Pistolesi
+# Club Atletico José Marmol
 
 La aplicación Club_app esta destinada a la administración de un club. En la misma es posible realizar las siguientes acciones: 
 Registrar los datos personales de los alumnos y su actividad en el club.

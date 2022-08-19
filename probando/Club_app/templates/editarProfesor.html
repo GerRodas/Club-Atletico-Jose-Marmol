@@ -1,0 +1,18 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+<h1 style="color:darkblue">Actividades y turnos</h1>
+
+
+    <form action="{% url 'editarProfesor' id %}" enctype="multipart/form-data" method="POST">{% csrf_token %}
+        
+        {{miFormulario.as_p}}
+
+        <input type="submit" value="Guardar">
+    
+    </form>
+ 
+{% endblock %}

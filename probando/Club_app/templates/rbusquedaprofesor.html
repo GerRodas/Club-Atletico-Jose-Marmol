@@ -1,0 +1,30 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+<p style="color:darkblue"><strong>Busqueda de profesores que dictan clases de: {{actividad}}</strong></p>
+
+{% if profesores %}
+
+    <ul>
+        {% for X in profesores %}
+            <li>
+                Profesor {{X.nombre}} - Turno {{X.turno}} 
+            </li>
+            {% if X.imagen %}
+            <img src="{{X.imagen.url}}" width="200">
+            {% endif %}
+
+        
+        {% endfor %}
+
+    </ul>
+
+{% else %}
+    <p>No hubo coincidencias!</p>
+
+{% endif %}
+
+{% endblock %}

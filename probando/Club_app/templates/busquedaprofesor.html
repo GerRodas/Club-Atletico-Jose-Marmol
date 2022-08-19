@@ -1,0 +1,17 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+    <h1 style="color:darkblue">Busqueda de profesores por actividad dictada</h1>
+
+    <form action="{% url 'buscandoprofe' %}" method="GET">{% csrf_token %}
+
+        <p style="color: grey">Actividad <input type="text" name="actividad" placeholder="Inicialice con mayúscula"></p>
+
+        <input type="submit" value="Buscar">
+
+    </form>
+
+{% endblock %}

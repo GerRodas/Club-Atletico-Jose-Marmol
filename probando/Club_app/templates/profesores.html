@@ -1,0 +1,24 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+    <h1 style="color:darkblue">Profesores</h1>
+
+    <form action="{% url 'profesores' %}" method="POST">{% csrf_token %}
+
+        <p style="color: grey">Nombre: <input type="text" name="nombre" placeholder="Inicialice con mayúscula"></p>
+
+        <p style="color: grey">Actividad: <input type="text" name="actividad" placeholder="Inicialice con mayúscula"></p>
+
+        <p style="color: grey">Turno: <input type="text" name="turno" placeholder="Inicialice con mayúscula"></p>
+
+
+
+
+        <input type="submit" value="Registrar">
+
+    </form>
+
+{% endblock %}

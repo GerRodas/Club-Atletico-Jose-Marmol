@@ -1,0 +1,18 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+<h1 style="color:darkblue">Actividades</h1>
+
+
+    <form action="{% url 'actividades' %}" method="POST">{% csrf_token %}
+        
+        {{miFormulario.as_p}}
+
+        <input type="submit" value="Enviar">
+    
+    </form>
+ 
+{% endblock %}

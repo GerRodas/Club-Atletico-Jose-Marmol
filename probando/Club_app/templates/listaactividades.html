@@ -1,0 +1,29 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+<h1 style="color:darkblue">Actividades</h1>
+
+
+<h3>
+<ul>
+    {% for X in actividades %}
+
+        <li>{{X}}</li>
+
+    <div>
+        <form action="{% url 'eliminaractividad' X.id %}" method="POST">{% csrf_token %}
+            <button type ="submit">Eliminar</button>
+        </form>
+        <button>
+            <a href="{% url 'editarActividad' X.id %}">Editar</a>
+        </button>   
+    </div>
+</ul>
+    {% endfor %}
+
+    
+
+{% endblock %}

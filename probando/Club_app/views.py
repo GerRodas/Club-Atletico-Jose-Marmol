@@ -6,76 +6,188 @@ from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from Club_app.models import Actividades, Alumnos, Profesores
-from Club_app.forms import ProfesorFormulario
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from Club_app.models import Actividades, Alumnos, Profesores, Avatar
+from Club_app.forms import ActividadesFormulario, AlumnoFormulario, ProfesorFormulario, UserEditForm, AvatarFormulario
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+
+from django.contrib.auth.models import User
 # Create your views here.
 
-def inicio(self):
-    return render(self, "inicio.html")
 
 
-def profesores(request):
+def inicio(request):
 
-    if request.method == "POST":
+    try:
+       avatar = Avatar.objects.get(user=request.user.id)
+       return render(request, "inicio.html", {"url": avatar.imagen.url})
 
-        profesores = Profesores(nombre=request.POST["nombre"], actividad=request.POST["actividad"], turno=request.POST["turno"], imagen=request.POST["imagen"])
-        
-        profesores.save()
-
-        return render(request,"cargaexitosa.html")
-
-    return render(request,"profesores.html")
-
-
-
-def actividades(request):
-    
-    if request.method == "POST":
-
-        actividades = Actividades(actividad=request.POST["actividad"], turno=request.POST["turno"])
-        
-        actividades.save()
-
-        return render(request,"cargaexitosa.html")
-
-    return render(request,"actividades.html")
+    except:
+        return render(request, "inicio.html")
 
 
 def alumnos(request):
-    
+
+
     if request.method == "POST":
 
-        alumnos = Alumnos(nombre=request.POST["nombre"], edad=request.POST["edad"],actividad=request.POST["actividad"], turno=request.POST["turno"])
+        miFormulario = AlumnoFormulario(request.POST)
+
+        if miFormulario.is_valid():
         
-        alumnos.save()
+            data = miFormulario.cleaned_data
 
-        return render(request,"cargaexitosa.html")
+            Alumno = Alumnos(nombre=data["nombre"], edad=data["edad"], actividad=data["actividad"], turno=data["turno"])
+       
+            Alumno.save()
 
-    return render(request,"alumnos.html")
+            return render(request, "cargaexitosa.html")
 
+    else:
+        miFormulario = AlumnoFormulario()
+
+        
+    return render(request, "alumnoFormulario.html", {"miFormulario": miFormulario})
+
+
+
+def lista_alumnos(request):
+
+    alumnos = Alumnos.objects.all()
+    contexto = {"alumnos": alumnos}
+
+    return render(request, "listaalumnos.html", contexto)
+
+
+
+def eliminar_alumnos(request, id):
+
+    if request.method == "POST":
+
+        alumno = Alumnos.objects.get(id=id)
+        alumno.delete()
+        alumnos = Alumnos.objects.all()
+        contexto = {"alumnos": alumnos}
+
+        return render(request, "listaalumnos.html", contexto)
+
+
+
+def editar_alumno(request,id):
+
+    alumno = Alumnos.objects.get(id=id)
+
+    if request.method == "POST":
+
+        miFormulario = AlumnoFormulario(request.POST)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+
+            alumno.nombre = data["nombre"]
+            alumno.edad = data["edad"]
+            alumno.actividad = data["actividad"]
+            alumno.turno =data["turno"]
+
+            alumno.save()
+
+            return render(request, "cargaexitosa.html")
+
+    else:
+        miFormulario = AlumnoFormulario(initial={
+            "nombre": alumno.nombre,
+            "edad": alumno.edad,
+            "actividad": alumno.actividad,
+            "turno": alumno.turno})
+
+        
+    return render(request, "editarAlumno.html", {"miFormulario": miFormulario, "id": alumno.id})
+
+
+
+
+def crear_actividad(request):
+
+
+    if request.method == "POST":
+
+        miFormulario = ActividadesFormulario(request.POST)
+
+        if miFormulario.is_valid():
+        
+            data = miFormulario.cleaned_data
+
+            Activ = Actividades(actividad=data["actividad"], turno=data["turno"])
+       
+            Activ.save()
+
+            return render(request, "cargaexitosa.html")
+
+    else:
+        miFormulario = ActividadesFormulario()
+
+        
+    return render(request, "actividadFormulario.html", {"miFormulario": miFormulario})
 
 
 def listado_actividades(request):
 
-    lista = Actividades.objects.all()
+    actividades = Actividades.objects.all()
+    contexto = {"actividades": actividades}
 
-    dic = {"activ":lista} 
+    return render(request, "listaactividades.html", contexto)
 
-    plantilla = loader.get_template("listadoactividades.html")
-    
-    documento = plantilla.render(dic)
 
-    return HttpResponse(documento)
+def eliminar_actividad(request, id):
 
-#otra forma hubiese sido, dejo lista y sigue con:
-#contexto =  {"activ":lista}
-# return render(request,"listadoactividades.html", contexto)
+    if request.method == "POST":
+
+        actividad = Actividades.objects.get(id=id)
+        actividad.delete()
+        actividades = Actividades.objects.all()
+        contexto = {"actividades": actividades}
+
+        return render(request, "listaactividades.html", contexto)
+
+
+
+def editar_actividad(request,id):
+
+    actividad = Actividades.objects.get(id=id)
+
+    if request.method == "POST":
+
+        miFormulario = ActividadesFormulario(request.POST)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+
+            actividad.actividad = data["actividad"]
+            actividad.turno = data["turno"]
+
+            actividad.save()
+
+            return render(request, "cargaexitosa.html")
+
+    else:
+        miFormulario = ActividadesFormulario(initial={
+            "actividad": actividad.actividad,
+            "turno": actividad.turno})
+
+
+        
+    return render(request, "editarActividad.html", {"miFormulario": miFormulario, "id": actividad.id})
+
+
+
+
+
 
 
 ### BUSQUEDA de profesores que dictan clases de: / LA BUSQUEDA EN LA COLUMANA ACTIVIDAD
@@ -141,8 +253,6 @@ def crea_profesor(request):
 
 
 
-
-
 def eliminarprofesor(request, id):
 
     if request.method == "POST":
@@ -156,9 +266,6 @@ def eliminarprofesor(request, id):
 
 
 def editar_profesor(request,id):
-
-    print("method:", request.method)
-    print("post:", request.POST)
 
     profesor = Profesores.objects.get(id=id)
 
@@ -190,7 +297,9 @@ def editar_profesor(request,id):
     return render(request, "editarProfesor.html", {"miFormulario": miFormulario, "id": profesor.id})
 
 
-    #CLASE 23  LOGIN LOGOUT Y REGISTRARARSE
+
+
+#CLASE 23  LOGIN LOGOUT Y REGISTRARARSE
 
 def loginView(request):
 
@@ -257,6 +366,95 @@ def loginrequerido(request):
 def solo_staff(request):
     
     return render(request, "solostaff.html")
+
+
+
+
+@login_required
+def editar_perfil(request):
+
+    usuario = request.user
+
+    if request.method == "POST":
+        
+        miFormulario = UserEditForm(request.POST)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+
+
+            usuario.password1 = data["password1"]
+            usuario.password2 = data["password2"]
+            usuario.first_name = data["first_name"]
+            usuario.last_name = data["last_name"]
+            usuario.email = data["email"]
+            usuario.username = data["username"]
+
+            usuario.save()
+
+            return render(request, "perfilactualizado.html")
+
+    else:
+
+        miFormulario = UserEditForm(initial={"email":usuario.email, "first_name": usuario.first_name,"last_name": usuario.last_name,"username": usuario.username})
+
+    return render(request, "editarPerfil.html", {"miFormulario": miFormulario, "usuario":usuario})
+
+
+
+@login_required
+def agregar_avatar(request):
+
+    if request.method == "POST":
+        
+        miFormulario = AvatarFormulario(request.POST, request.FILES)
+
+        if miFormulario.is_valid():
+            #esta parte la arme como la filminas
+            u = User.objects.get(username=request.user)
+            avatar = Avatar(user=u, imagen=miFormulario.cleaned_data["imagen"])
+
+            #avatar = Avatar(user=request.user, imagen=data['imagen'])
+
+            avatar.save()
+
+        return render(request, "inicio.html")
+
+    else:
+
+        miFormulario = AvatarFormulario()
+
+    return render(request, "agregarAvatar.html", {"miFormulario": miFormulario})
+
+
+
+#def editar_perfil(request):
+
+    usuario = request.user
+
+    if request.method == "POST":
+        
+        miFormulario = UserEditForm(request.POST, instance=request.user)
+
+        if miFormulario.is_valid():
+
+            data = miFormulario.cleaned_data
+
+            usuario.first_name = data["first_name"]
+            usuario.last_name = data["last_name"]
+            usuario.email = data["email"]
+
+            usuario.save()
+
+            return render(request, "perfilactualizado.html")
+
+    else:
+
+        miFormulario = UserEditForm(instance=request.user)
+
+    return render(request, "editarPerfil.html", {"miFormulario": miFormulario})
+
 
 
 

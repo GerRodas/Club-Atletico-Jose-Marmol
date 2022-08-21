@@ -2,7 +2,7 @@ from django.contrib import admin
 
 ############IMPORTO LOS MODELOS  ####
 
-from Club_app.models import Profesores, Alumnos, Actividades
+from Club_app.models import Avatar, Profesores, Alumnos, Actividades
 #LIST DISPLAY PARA MOSTRAR EN COLUMNAS
 #search para buscar en todas las columnas
 class Alumnosadmin(admin.ModelAdmin):
@@ -20,6 +20,7 @@ class Actividadesadmin(admin.ModelAdmin):
 admin.site.register(Profesores, Profesoresadmin)
 admin.site.register(Alumnos, Alumnosadmin)
 admin.site.register(Actividades, Actividadesadmin)
+admin.site.register(Avatar)
 
 #USUARIO pisto
 #clave 123456

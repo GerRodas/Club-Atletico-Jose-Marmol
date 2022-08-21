@@ -28,9 +28,13 @@
                         <li class="nav-item"><a class="nav-link" href="/Club_app/registrar/">Registrarse</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
 
-                        {% if user.is_authenticated %}
-                           <p>Bienvenido {{user.name}}</p>
-                           <a class="btn btn-primary" href="{% url 'Logout' %}">LOGOUT</a>
+                        {% if request.user.is_authenticated %}
+
+                            {% if url %}
+                                <img src="{{url}}" height="60px" alt="avatar">
+                            {% endif %}
+                            <p>{{user.username}}</p> 
+                            <a class="btn btn-primary" href="{% url 'Logout' %}">LOGOUT</a>
                         {% else %}
                             <a class="btn btn-primary" href="{% url 'Login' %}">LOGIN</a>
                         {% endif %}

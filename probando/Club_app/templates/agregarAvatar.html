@@ -1,0 +1,18 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+
+    <form 
+        enctype="multipart/form-data"
+        method="POST">{% csrf_token %}
+        
+        {{miFormulario.as_p}}
+
+        <input type="submit" value="Enviar">
+    
+    </form>
+ 
+{% endblock %}

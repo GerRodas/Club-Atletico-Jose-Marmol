@@ -1,0 +1,18 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+<h1 style="color:darkblue">Editar alumnos</h1>
+
+
+    <form action="{% url 'editarAlumnos' id %}"  method="POST">{% csrf_token %}
+        
+        {{miFormulario.as_p}}
+
+        <input type="submit" value="Guardar">
+    
+    </form>
+ 
+{% endblock %}

@@ -1,6 +1,8 @@
 from distutils.command.upload import upload
 from django.db import models
 
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Alumnos(models.Model):
@@ -42,4 +44,10 @@ class Actividades(models.Model):
         ordering = ("actividad", "turno")
 #unique evita que se repitan registros
         unique_together = ("actividad", "turno")
+
+
+
+class Avatar(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    imagen = models.ImageField(upload_to="avatares", blank=True, null=True)
 

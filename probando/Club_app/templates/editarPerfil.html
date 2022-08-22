@@ -1,0 +1,17 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+<h1>Tus datos {{usuario}}</h1>
+
+    <form method="POST">{% csrf_token %}
+        
+        {{miFormulario.as_p}}
+
+        <input type="submit" value="Guardar">
+    
+    </form>
+ 
+{% endblock %}

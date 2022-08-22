@@ -1,6 +1,6 @@
 from django.urls import path
 
-from Club_app.views import actividades, alumnos, buscando_profe, crea_profesor, editar_profesor, eliminarprofesor, inicio, listaprofesores, profesores, busqueda_profesor, listado_actividades, loginView, register, loginrequerido, solo_staff
+from Club_app.views import agregar_avatar, alumnos, buscando_profe, crea_profesor, crear_actividad, editar_actividad, editar_alumno, editar_perfil, editar_profesor, eliminar_actividad, eliminar_alumnos, eliminarprofesor, inicio, lista_alumnos, listaprofesores, busqueda_profesor, listado_actividades, loginView, register, loginrequerido, solo_staff
 
 from django.contrib.auth.views import LogoutView
 
@@ -8,11 +8,11 @@ from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path("", inicio),
-    path("Club_app/profesores/", profesores, name="profesores"),
+    #no lo utilizamos path("Club_app/profesores/", profesores, name="profesores"),
     path("Club_app/busquedaprofesor/", busqueda_profesor, name="busquedaprofesor"),
     path("Club_app/buscandoprofe/", buscando_profe, name="buscandoprofe"),
-    path("Club_app/actividades/", actividades, name="actividades"),
-    path("Club_app/alumnos/", alumnos, name="alumnos"),
+    path("Club_app/actividades/", crear_actividad, name="actividades"),
+    path("Club_app/alumnos/", alumnos, name="creaalumnos"),
     path("Club_app/listaactividades/", listado_actividades, name="listaactividades"),
     path("Club_app/leerprofesores/",listaprofesores, name="listaprofesores"),
     path("Club_app/eliminarprofesor/<int:id>", eliminarprofesor, name="eliminarprofesor"),
@@ -22,5 +22,12 @@ urlpatterns = [
     path("Club_app/registrar/", register, name="Registrar"),
     path("logout/", LogoutView.as_view(template_name="logout.html"), name="Logout"),
     path("Club_app/loginrequerido/", loginrequerido, name="loginrequerido"),
-    path("Club_app/solostaff/", solo_staff, name="solostaff")
+    path("Club_app/solostaff/", solo_staff, name="solostaff"),
+    path("Club_app/editarperfil/", editar_perfil, name="editarperfil"),
+    path("Club_app/agregaravatar/", agregar_avatar, name="agregaravatar"),
+    path("Club_app/listaalumnos/", lista_alumnos, name="listaalumnos"),
+    path("Club_app/eliminaralumnos/<int:id>", eliminar_alumnos, name="eliminaralumnos"),
+    path("Club_app/editaralumnos/<int:id>", editar_alumno, name="editarAlumnos"),
+    path("Club_app/eliminaractividad/<int:id>", eliminar_actividad, name="eliminaractividad"),
+     path("Club_app/editaractividad/<int:id>", editar_actividad, name="editarActividad")
 ]

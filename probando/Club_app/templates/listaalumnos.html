@@ -1,0 +1,31 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoquecambia %}
+
+<h1 style="color:darkblue">Alumnos</h1>
+
+
+<h3>
+<ul>
+    {% for X in alumnos %}
+
+        <li>{{X}}</li>
+     
+    
+
+    <div>
+        <form action="{% url 'eliminaralumnos' X.id %}" method="POST">{% csrf_token %}
+            <button type ="submit">Eliminar</button>
+        </form>
+        <button>
+            <a href="{% url 'editarAlumnos' X.id %}">Editar</a>
+        </button>
+       
+    </div>
+</ul>
+    {% endfor %}
+<a href="{% url 'creaalumnos' %}">Crear alumno</a>
+</h3>
+{% endblock %}

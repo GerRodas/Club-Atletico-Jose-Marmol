@@ -14,6 +14,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
+
+from django.core.mail import send_mail
+from django.conf import settings
 # Create your views here.
 
 def inicio(self):
@@ -257,6 +260,29 @@ def loginrequerido(request):
 def solo_staff(request):
     
     return render(request, "solostaff.html")
+
+
+
+
+def contacto(request):
+
+    if request.method == "POST":
+
+        subject=request.POST["asunto"]
+
+        message=request.POST["mensaje"] + " " + request.POST["email"]
+
+        email_from=settings.EMAIL_HOST_USER
+
+        recipient_list=["josemarmol262@gmail.com"]
+
+        send_mail(subject, message, email_from, recipient_list)
+
+        return render(request, "emailenviado.html")
+
+    return render(request, "contacto.html")
+
+
 
 
 

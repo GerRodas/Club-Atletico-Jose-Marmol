@@ -1,6 +1,6 @@
 from django.urls import path
 
-from Club_app.views import actividades, alumnos, buscando_profe, crea_profesor, editar_profesor, eliminarprofesor, inicio, listaprofesores, profesores, busqueda_profesor, listado_actividades, loginView, register, loginrequerido, solo_staff
+from Club_app.views import actividades, alumnos, buscando_profe, contacto, crea_profesor, editar_profesor, eliminarprofesor, inicio, listaprofesores, profesores, busqueda_profesor, listado_actividades, loginView, register, loginrequerido, solo_staff
 
 from django.contrib.auth.views import LogoutView
 
@@ -22,5 +22,7 @@ urlpatterns = [
     path("Club_app/registrar/", register, name="Registrar"),
     path("logout/", LogoutView.as_view(template_name="logout.html"), name="Logout"),
     path("Club_app/loginrequerido/", loginrequerido, name="loginrequerido"),
-    path("Club_app/solostaff/", solo_staff, name="solostaff")
+    path("Club_app/solostaff/", solo_staff, name="solostaff"),
+    path("Club_app/contacto/", contacto, name="contacto"),
+
 ]

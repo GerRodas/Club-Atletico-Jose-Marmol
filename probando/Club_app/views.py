@@ -15,7 +15,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
 
+
 from django.contrib.auth.models import User
+
+from django.core.mail import send_mail
+from django.conf import settings
+
 # Create your views here.
 
 
@@ -370,6 +375,7 @@ def solo_staff(request):
 
 
 
+
 @login_required
 def editar_perfil(request):
 
@@ -454,6 +460,26 @@ def agregar_avatar(request):
         miFormulario = UserEditForm(instance=request.user)
 
     return render(request, "editarPerfil.html", {"miFormulario": miFormulario})
+
+def contacto(request):
+
+    if request.method == "POST":
+
+        subject=request.POST["asunto"]
+
+        message=request.POST["mensaje"] + " " + request.POST["email"]
+
+        email_from=settings.EMAIL_HOST_USER
+
+        recipient_list=["josemarmol262@gmail.com"]
+
+        send_mail(subject, message, email_from, recipient_list)
+
+        return render(request, "emailenviado.html")
+
+    return render(request, "contacto.html")
+
+
 
 
 

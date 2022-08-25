@@ -1,8 +1,14 @@
 from django.urls import path
 
+
 from Club_app.views import agregar_avatar, alumnos, buscando_profe, crea_profesor, crear_actividad, editar_actividad, editar_alumno, editar_perfil, editar_profesor, eliminar_actividad, eliminar_alumnos, eliminarprofesor, inicio, lista_alumnos, listaprofesores, busqueda_profesor, listado_actividades, loginView, register, loginrequerido, solo_staff
 
+
+
+
 from django.contrib.auth.views import LogoutView
+
+from Club_app.views import contacto
 
 
 
@@ -29,5 +35,8 @@ urlpatterns = [
     path("Club_app/eliminaralumnos/<int:id>", eliminar_alumnos, name="eliminaralumnos"),
     path("Club_app/editaralumnos/<int:id>", editar_alumno, name="editarAlumnos"),
     path("Club_app/eliminaractividad/<int:id>", eliminar_actividad, name="eliminaractividad"),
-     path("Club_app/editaractividad/<int:id>", editar_actividad, name="editarActividad")
+    path("Club_app/editaractividad/<int:id>", editar_actividad, name="editarActividad"),
+    path("Club_app/contacto/", contacto, name="contacto"),
+
 ]
+

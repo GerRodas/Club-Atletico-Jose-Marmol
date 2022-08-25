@@ -2,15 +2,15 @@
 
 {% load static %}
 
-{% block contenidoquecambia %}
-
-<form action="{% url 'Login' %}" method="POST">{% csrf_token %}
+{% block contenidoQueCambia %}
+<section>
+    <div class="container"></div>
+        <form action="{% url 'Login' %}" method="POST">{% csrf_token %}
         
-    {{miFormulario.as_p}}
+            {{miFormulario.as_p}}
 
-    <input type="submit" value="Iniciar sesion">
-
-</form>
-
-    
+            <input type="submit" value="Iniciar sesion">
+     </form>
+    </div>
+</section>
 {% endblock %}

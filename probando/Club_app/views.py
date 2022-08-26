@@ -68,7 +68,7 @@ def lista_alumnos(request):
     return render(request, "listaalumnos.html", contexto)
 
 
-
+@staff_member_required(login_url="/Club_app/solostaff/")
 def eliminar_alumnos(request, id):
 
     if request.method == "POST":
@@ -81,7 +81,7 @@ def eliminar_alumnos(request, id):
         return render(request, "listaalumnos.html", contexto)
 
 
-
+@login_required
 def editar_alumno(request,id):
 
     alumno = Alumnos.objects.get(id=id)
@@ -115,7 +115,7 @@ def editar_alumno(request,id):
 
 
 
-
+@login_required
 def crear_actividad(request):
 
 
@@ -147,7 +147,7 @@ def listado_actividades(request):
 
     return render(request, "listaactividades.html", contexto)
 
-
+@staff_member_required(login_url="/Club_app/solostaff/")
 def eliminar_actividad(request, id):
 
     if request.method == "POST":
@@ -160,7 +160,7 @@ def eliminar_actividad(request, id):
         return render(request, "listaactividades.html", contexto)
 
 
-
+#@staff_member_required(login_url="/Club_app/solostaff/")
 def editar_actividad(request,id):
 
     actividad = Actividades.objects.get(id=id)
@@ -484,6 +484,10 @@ def nosotros(request):
     
     return render(request, "nosotros.html")
 
+
+def PrevioAlumnos(request):
+    
+    return render(request, "previoAlumnos.html")
 
 
 

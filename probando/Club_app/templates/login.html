@@ -3,7 +3,27 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-<section>
+
+<section class="page-section bg-grass">
+    <div class="text-center">
+        <h2 class="section-heading text-white">Inicia Sesión</h2>
+        <h3 class="section-heading text-white">Si ya tenes usuario, solo ingresá</h3>
+    </div>
+    <br>
+    <div class="text-center">
+            
+            <form action="{% url 'Login' %}" method="POST">{% csrf_token %}
+                
+                <h4 class="text-white">{{miFormulario.as_p}}</h4>
+                
+                <input class="btn btn-primary" type="submit" value="Iniciar Sesión">
+            
+            </form>
+
+    </div>
+
+</section>
+<!--section>
     <div class="container"></div>
         <form action="{% url 'Login' %}" method="POST">{% csrf_token %}
         

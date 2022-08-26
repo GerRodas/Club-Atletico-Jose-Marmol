@@ -8,7 +8,7 @@ from Club_app.views import agregar_avatar, alumnos, buscando_profe, crea_profeso
 
 from django.contrib.auth.views import LogoutView
 
-from Club_app.views import contacto, nosotros
+from Club_app.views import contacto, nosotros, PrevioAlumnos
 
 
 
@@ -38,6 +38,7 @@ urlpatterns = [
     path("Club_app/editaractividad/<int:id>", editar_actividad, name="editarActividad"),
     path("Club_app/contacto/", contacto, name="contacto"),
     path("Club_app/nosotros/", nosotros, name="nosotros"),
+    path("Club_app/previoAlumnos/", PrevioAlumnos, name="previoAlumnos"),
 
 ]
 

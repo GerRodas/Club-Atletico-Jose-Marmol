@@ -8,7 +8,12 @@
     <div class="container">
         <div class="masthead-subheading">Bienvenido a Club Atlético José Marmol</div>
         <div class="masthead-heading text-uppercase">Tu barrio, tu club</div>
-        <a class="btn btn-primary btn-xl text-uppercase" href="comofunciona.html">Iniciar</a>
+        {% if user.is_authenticated %}
+            <h1 class="text-white">{{mensaje}}</h1>
+        {% else %}
+        <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'Login' %}">Iniciar</a>
+        {% endif %}
+        
     </div>
 </header>
 

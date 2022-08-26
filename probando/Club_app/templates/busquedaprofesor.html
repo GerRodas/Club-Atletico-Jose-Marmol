@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-
+<section>
     <h1 style="color:darkblue">Busqueda de profesores por actividad dictada</h1>
 
     <form action="{% url 'buscandoprofe' %}" method="GET">{% csrf_token %}
@@ -13,5 +13,5 @@
         <input type="submit" value="Buscar">
 
     </form>
-
+</section>
 {% endblock %}

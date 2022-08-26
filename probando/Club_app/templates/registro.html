@@ -3,14 +3,17 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-<div class="text-center">
-    <form action="{% url 'Registrar' %}" method="POST">{% csrf_token %}
+<section>
+    <div class="container">
+        <div>
+            <form action="{% url 'Registrar' %}" method="POST">{% csrf_token %}
         
-        {{miFormulario.as_p}}
+            {{miFormulario.as_p}}
 
-    <input type="submit" value="registrar">
+            <input type="submit" value="registrar">
 
-    </form>
-</div>
-    
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock %}

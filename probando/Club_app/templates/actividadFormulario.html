@@ -3,8 +3,25 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
+<section class="page-section bg-dark" id="contact">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-white">Cargar actividades</h2>
+        </div>
+    <br>
+    <h3>
+<ul class="section-heading text-white">
+        
+        <div class="text-left text-white">
+            <form action="{% url 'actividades' %}" method="POST">{% csrf_token %}
+                {{miFormulario.as_p}}
 
-<h1 style="color:darkblue">Actividades</h1>
+                <input class="btn btn-primary" type="submit" value="Cargar">
+            </form>
+        </div>
+</section>    
+
+<!--h1 style="color:darkblue">Actividades</h1>
 
 
     <form action="{% url 'actividades' %}" method="POST">{% csrf_token %}
@@ -13,6 +30,6 @@
 
         <input type="submit" value="Enviar">
     
-    </form>
+    </form-->
  
 {% endblock %}

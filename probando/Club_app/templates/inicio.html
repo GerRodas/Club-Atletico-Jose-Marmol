@@ -11,7 +11,7 @@
         {% if user.is_authenticated %}
             <h1 class="text-white">{{mensaje}}</h1>
         {% else %}
-        <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'Login' %}">Iniciar</a>
+            <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'Login' %}">Iniciar</a>
         {% endif %}
         
     </div>

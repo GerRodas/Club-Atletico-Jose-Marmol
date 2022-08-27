@@ -6,7 +6,7 @@ from urllib import request
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from Club_app.models import Actividades, Alumnos, Profesores, Avatar
+from Club_app.models import Actividades, Alumnos, Profesores, Avatar, Noticias
 from Club_app.forms import ActividadesFormulario, AlumnoFormulario, ProfesorFormulario, UserEditForm, AvatarFormulario
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django.contrib.auth import authenticate, login, logout
@@ -14,12 +14,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from django.contrib.auth.models import User
 
 from django.core.mail import send_mail
 from django.conf import settings
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -490,9 +491,38 @@ def PrevioAlumnos(request):
     return render(request, "previoAlumnos.html")
 
 
+def padre(request):
+    
+    try:
+       avatar = Avatar.objects.get(user=request.user.id)
+       return render(request, "padre.html", {"url": avatar.imagen.url})
 
+    except:
+        return render(request, "padre.html")
        
 
-           
+class NoticiasView(ListView):
+    model = Noticias
+    template_name = 'noticias.html'
+    ordering = ['-id']
+
+class NoticiasDetalle(DetailView):
+    model = Noticias
+    template_name = 'detalleNoticia.html'
 
 
+class AgregarNoticia(CreateView):
+    model = Noticias
+    template_name = 'agregarPost.html'
+    fields = '__all__'
+
+
+class EditarNoticia(UpdateView):
+    model = Noticias
+    template_name = 'editarnoticia.html'
+    fields = ['titulo', 'cuerpo']
+
+class EliminarNoticia(DeleteView):
+    model = Noticias
+    template_name = 'eliminarnoticia.html'
+    success_url = reverse_lazy('inicio')

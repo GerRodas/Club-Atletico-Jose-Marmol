@@ -1,0 +1,32 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<section class="page-section bg-dark" id="contact">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-white">Editar noticia</h2>
+            <h3 class="section-heading text-white">¿Le erraste al escribirlo? Arreglalo</h3>
+        </div>
+        <br>
+        <br>
+    <div class="text-white">
+        <ul>
+        <form method="POST"> {% csrf_token %}
+            {{form.as_p}}
+
+            <button class="btn btn-primary text-center">Editar</button>
+
+        </form>
+        </ul>
+
+    </div>
+
+
+    </div>
+
+</section>    
+
+{% endblock %}

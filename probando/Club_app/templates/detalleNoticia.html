@@ -1,0 +1,32 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<section class="page-section bg-dark" id="contact">
+    <div class="container">
+        <br>
+        <br>
+        <div class="text-left">
+            <h2 class="section-heading text-white">{{noticias.titulo}}</h2>
+            
+        </div>
+    <div class="text-white">
+         
+        <small>Escrito por {{noticias.autor}}</small>
+        <br>
+        <br>
+        {{noticias.cuerpo}}
+        <br>
+        <br>
+        <br>
+        <a class="btn btn-primary text-left" href="{% url 'noticias' %}">Volver</a>
+    </div>
+<br>
+<br>
+    </div>
+
+</section>    
+
+{% endblock %}

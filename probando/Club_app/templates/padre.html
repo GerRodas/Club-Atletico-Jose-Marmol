@@ -40,7 +40,7 @@
                             <li class="nav-item"><a class="nav-link" href="{% url 'editarperfil' %}">¡Hola {{user}}</a></li>
                             <a class="btn btn-primary" href="{% url 'Logout' %}">LOGOUT</a>
                         {% if url %}
-                            <a href="{% url 'agregaravatar' %}"><img src="{{user.avatar.url}}" height="35px" alt="avatar"></a>
+                            <a href="{% url 'agregaravatar' %}"><img src="{{url}}" height="35px" alt="avatar"></a>
                         {% endif %}
                                 
                         {% else %}

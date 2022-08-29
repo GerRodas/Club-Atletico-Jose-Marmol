@@ -4,7 +4,40 @@
 
 {% block contenidoQueCambia %}
 
-<p style="color:darkblue"><strong>Busqueda de profesores que dictan clases de: {{actividad}}</strong></p>
+<section class="page-section bg-grass">
+    <div class="text-center">
+        <h2 class="section-heading text-white">Los profesores que dictan {{actividad}} son:</h2>
+    </div>
+    <br>
+
+    {% if profesores %}
+
+    <ul class="text-white">
+        {% for X in profesores %}
+            <li>
+                Profesor {{X.nombre}} - Turno {{X.turno}} 
+            </li>
+            {% if X.imagen %}
+            <img src="{{X.imagen.url}}" width="200">
+            {% endif %}
+
+        <br>
+        <br>
+        {% endfor %}
+
+    </ul>
+
+{% else %}
+    <p>No hubo coincidencias!</p>
+
+{% endif %}
+<div class="text-center">
+
+    <a class="btn btn-primary" data-bs-toggle="modal" href="{% url 'busquedaprofesor' %}">Buscar de vuelta</a>
+
+</div>
+
+<!--p style="color:darkblue"><strong>Busqueda de profesores que dictan clases de: {{actividad}}</strong></p>
 
 {% if profesores %}
 
@@ -23,7 +56,7 @@
     </ul>
 
 {% else %}
-    <p>No hubo coincidencias!</p>
+    <p>No hubo coincidencias!</p-->
 
 {% endif %}
 

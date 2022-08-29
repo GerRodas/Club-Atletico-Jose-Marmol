@@ -10,7 +10,7 @@
         <meta name="author" content="" />
         <title>Club Atlético José Marmol</title>
         <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="/static/assets/favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="/static/assets/deportes.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -32,17 +32,15 @@
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href=" {% url 'noticias' %} ">Noticias</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Club_app/previoAlumnos/">Socios</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Club_app/profesor">Profesores</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'previoprofesores' %}">Profesores</a></li>
                         <li class="nav-item"><a class="nav-link" href="/Club_app/listaactividades">Actividades</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'contacto' %}">Contactanos</a></li>
                         
-                        {% if user.is_authenticated %}                      
-                            
-                            <li class="nav-item nav-link text-white">¡Hola {{user}}!</li>
-                            <li class="nav-item"><a class="nav-link" href="{% url 'editarperfil' %}">Editar perfil</a></li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link" href="{% url 'editarperfil' %}">¡Hola {{user}}</a></li>
                             <a class="btn btn-primary" href="{% url 'Logout' %}">LOGOUT</a>
                         {% if url %}
-                                <a href="{% url 'agregaravatar' %}"><img src="{{url}}" height="35px" alt="avatar"></a>
+                            <a href="{% url 'agregaravatar' %}"><img src="{{user.avatar.url}}" height="35px" alt="avatar"></a>
                         {% endif %}
                                 
                         {% else %}
@@ -66,14 +64,14 @@
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-4 text-lg-start">Copyright &copy; 2022 Club Atlético José Marmol</div>
-                    <div class="col-lg-4 my-3 my-lg-0">
+                    <!--div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="col-lg-4 text-lg-end">
+                    </div-->
+                    <div class="col-lg-7 text-lg-end">
                         <a class="link-dark text-decoration-none me-3" href="{% url 'nosotros' %}">Desarrolladores</a>
-                        <a class="link-dark text-decoration-none" href="#!">Terminos de uso</a>
+                        <!--a class="link-dark text-decoration-none" href="#!">Terminos de uso</a-->
                     </div>
                 </div>
             </div>

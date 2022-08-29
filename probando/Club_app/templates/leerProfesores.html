@@ -6,29 +6,44 @@
 
 <!-- ESTO ME LO TRAJE DEL TEMPLATE PADRE  Y SOLO CAMBIE UN HREF-->
 
-<html lang="en">
-    <head>
+<section class="page-section bg-grass">
+    <div class="container"></div>
+        <div class="text-center">
+            <h2 class="section-heading text-white">Lista de Profesores</h2>
+        </div>
+      
+    <h3>    
+<ul class="section-heading text-white">
+        {% for profe in profesores %}
 
-        {% load static %}
+        {% if profe.imagen %}
+            <img src="{{profe.imagen.url}}" height="150" alt="...">
+        {% endif %}
 
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Pistoles Diego - Club_app</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
-        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
-        <link href="{% static 'css/misestilos.css' %}" rel="stylesheet" />
-    </head>
+            <li class="text-white text-left">{{profe}}</li>
+    
+        <div class="text-left">
+            <form action="{% url 'eliminarprofesor' profe.id %}" method="POST">{% csrf_token %}
+                <button class="btn btn-primary" type="submit">Eliminar</button>
+            </form>
+                <a class="btn btn-primary" href="{% url 'editarProfesor' profe.id %}">Editar</a>    
+        </div>
+        <br>
+        <br>
+        {% endfor %}
+</ul>
+    <div>
+        <div class="text-center">
 
+            <a class="btn btn-primary" href="{% url 'CreaProfesor' %}">Ingresar nuevo Profesor</a>
 
+        </div>
 
-<h1 class="titulos">Actividades y turnos</h1>
+    </div>
+</div>
+</section>
+
+<!--h1 class="titulos">Actividades y turnos</h1>
 
 
 <h3>
@@ -52,7 +67,7 @@
         </div>
 
 
-<!--         <li>{{profe.nombre}} - Turno {{profe.turno}}></li>
+        <li>{{profe.nombre}} - Turno {{profe.turno}}></li>
         {% if profe.imagen %}
         <img src="{{profe.imagen.url}}" width="100" height="100">
         {% endif %}
@@ -64,10 +79,10 @@
             <button>
                 <a href="{% url 'editarProfesor' profe.id %}">Editar</a>
             </button>
-        </div> -->
+        </div>>
     {% endfor %}
 </ul>
     </section>
 <a href="{% url 'CreaProfesor' %}">Crear Profesor</a>
-</h3>
+</h3-->
 {% endblock %}

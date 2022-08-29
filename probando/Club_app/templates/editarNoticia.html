@@ -15,6 +15,7 @@
     <div class="text-white">
         <ul>
         <form method="POST"> {% csrf_token %}
+            {{form.media}}
             {{form.as_p}}
 
             <button class="btn btn-primary text-center">Editar</button>

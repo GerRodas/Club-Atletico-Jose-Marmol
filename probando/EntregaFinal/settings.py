@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Club_app'
+    'Club_app',
+    'ckeditor',
     
 ]
 
@@ -132,9 +133,9 @@ LOGIN_URL = "/Club_app/loginrequerido/"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-EMAILBACKEND = 'django.core.mail.backends.smtp.emailbackend'
+EMAILBACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST="smtp.gmail.com"
 EMAIL_USE_TLS=True
 EMAIL_PORT=587
-EMAIL_HOST_USER="josemarmol262@gmail.com"
-EMAIL_HOST_PASSWORD="ucevsejzqqmdrwsd"
+EMAIL_HOST_USER="comisiondirectivajosemarmol@gmail.com"
+EMAIL_HOST_PASSWORD="dgfjrjiyapohmuyj"

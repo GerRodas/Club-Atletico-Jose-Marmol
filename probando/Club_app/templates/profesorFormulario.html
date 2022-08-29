@@ -3,16 +3,23 @@
 {% load static %}
 
 {% block contenidoQueCambia %}
-
-<h1 style="color:darkblue">Actividades y turnos</h1>
-
-
-    <form action="{% url 'CreaProfesor' %}" enctype="multipart/form-data" method="POST">{% csrf_token %}
-        
-        {{miFormulario.as_p}}
-
-        <input type="submit" value="Enviar">
+<section class="page-section bg-grass">
+    <div class="text-center">
+        <h2 class="section-heading text-white">Profesores</h2>
+        <h3 class="section-heading text-white">Carga un profesor y su actvidad pertinente</h3>
+    </div>
+    <br>
+    <div class="text-center">
+            
+            <form action="{% url 'CreaProfesor' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+                
+                <h4 class="text-white">{{miFormulario.as_p}}</h4>
     
-    </form>
- 
+                <input class="btn btn-primary" type="submit" value="Enviar">
+            
+            </form>
+
+    </div>
+
+</section>
 {% endblock %}

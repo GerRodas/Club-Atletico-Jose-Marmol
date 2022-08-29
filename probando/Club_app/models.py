@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import datetime, date
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 class Alumnos(models.Model):
@@ -55,7 +56,8 @@ class Avatar(models.Model):
 class Noticias(models.Model):
     titulo = models.CharField(max_length=60)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
-    cuerpo = models.TextField()
+    cuerpo = RichTextField(blank=True, null=True)
+    # cuerpo = models.TextField()
     fechaPublicacion = models.DateField(auto_now_add=True)
 
     def __str__(self):

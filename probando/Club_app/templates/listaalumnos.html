@@ -18,7 +18,7 @@
     
         <div class="text-left">
             <form action="{% url 'eliminaralumnos' X.id %}" method="POST">{% csrf_token %}
-                <a class="btn btn-primary" type ="submit">Eliminar</a>
+                <button class="btn btn-primary" type="submit">Eliminar</button>
             </form>
                 <a class="btn btn-primary" href="{% url 'editarAlumnos' X.id %}">Editar</a>    
         </div>

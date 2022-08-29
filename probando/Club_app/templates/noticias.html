@@ -16,16 +16,21 @@
         <ul>
         {% for noticias in object_list %}
             <li><h2><a href=" {% url 'detallenoticia' noticias.pk %} "> {{noticias.titulo}} </a></h2> {{noticias.fechaPublicacion}}
-            <a href=" {% url 'editarnoticia' noticias.pk %} " class="link-dark">(Editar)</a>
-            <a href=" {% url 'eliminarnoticia' noticias.pk %} " class="link-dark">(Eliminar)</a><br/>
-            {{noticias.cuerpo}}</li>
+            
+            {% if user.is_authenticated %}
+                <a href=" {% url 'editarnoticia' noticias.pk %} " class="link-red">(Editar)</a>
+                <a href=" {% url 'eliminarnoticia' noticias.pk %} " class="link-red">(Eliminar)</a><br/>
+            {% endif %}
+                
+            <p>{{noticias.cuerpo | slice:":50" |safe}}</p> 
+            <a href=" {% url 'detallenoticia' noticias.pk %} "> (continuar leyendo) </a></li>
             <br>
         {% endfor %}
         </ul>
 
-    
-        <a class="btn btn-primary text-center" href="{% url 'agregarnoticia' %}">Agregar Noticia</a>
-   
+        {% if user.is_authenticated %}
+            <a class="btn btn-primary text-center" href="{% url 'agregarnoticia' %}">Agregar Noticia</a>
+        {% endif %}
 
 </section>    
 

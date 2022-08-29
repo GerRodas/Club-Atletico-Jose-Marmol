@@ -1,0 +1,61 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<section class="page-section bg-grass">
+    <div class="text-center">
+        <h2 class="section-heading text-white">Los socios que practican {{actividad}} son:</h2>
+    </div>
+    <br>
+
+    {% if alumnos %}
+
+    <ul class="text-white">
+        {% for X in alumnos %}
+            <li>
+                Alumno: {{X.nombre}} - Turno {{X.turno}} 
+            </li>
+            
+
+        <br>
+        <br>
+        {% endfor %}
+
+    </ul>
+
+{% else %}
+    <p>No hubo coincidencias!</p>
+
+{% endif %}
+<div class="text-center">
+
+    <a class="btn btn-primary" data-bs-toggle="modal" href="{% url 'buscandoalumno' %}">Buscar de vuelta</a>
+
+</div>
+
+<!--p style="color:darkblue"><strong>Busqueda de profesores que dictan clases de: {{actividad}}</strong></p>
+
+{% if profesores %}
+
+    <ul>
+        {% for X in profesores %}
+            <li>
+                Profesor {{X.nombre}} - Turno {{X.turno}} 
+            </li>
+            {% if X.imagen %}
+            <img src="{{X.imagen.url}}" width="200">
+            {% endif %}
+
+        
+        {% endfor %}
+
+    </ul>
+
+{% else %}
+    <p>No hubo coincidencias!</p>
+
+{% endif %}
+
+{% endblock %}

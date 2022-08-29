@@ -37,7 +37,7 @@ def inicio(request):
 
 
 def alumnos(request):
-
+    
 
     if request.method == "POST":
 
@@ -161,7 +161,7 @@ def eliminar_actividad(request, id):
         return render(request, "listaactividades.html", contexto)
 
 
-#@staff_member_required(login_url="/Club_app/solostaff/")
+@staff_member_required(login_url="/Club_app/solostaff/")
 def editar_actividad(request,id):
 
     actividad = Actividades.objects.get(id=id)
@@ -209,7 +209,7 @@ def buscando_profe(request):
 
         actividad = request.GET["actividad"]
 
-        otroscampos = Profesores.objects.all()
+        #otroscampos = Profesores.objects.all()
 
         profesores = Profesores.objects.filter(actividad__icontains=actividad)
 
@@ -223,7 +223,7 @@ def buscando_profe(request):
 
 #PRACTICANDO CLASE 22
 
-@staff_member_required(login_url="/Club_app/solostaff/")
+
 def listaprofesores(request):
 
     profesores = Profesores.objects.all()
@@ -258,7 +258,7 @@ def crea_profesor(request):
     return render(request, "profesorFormulario.html", {"miFormulario": miFormulario})
 
 
-
+@staff_member_required(login_url="/Club_app/solostaff/")
 def eliminarprofesor(request, id):
 
     if request.method == "POST":
@@ -270,7 +270,7 @@ def eliminarprofesor(request, id):
 
         return render(request, "leerProfesores.html", contexto)
 
-
+@login_required
 def editar_profesor(request,id):
 
     profesor = Profesores.objects.get(id=id)
@@ -462,6 +462,7 @@ def agregar_avatar(request):
 
     return render(request, "editarPerfil.html", {"miFormulario": miFormulario})
 
+@login_required
 def contacto(request):
 
     if request.method == "POST":
@@ -472,7 +473,7 @@ def contacto(request):
 
         email_from=settings.EMAIL_HOST_USER
 
-        recipient_list=["josemarmol262@gmail.com"]
+        recipient_list=["comisiondirectivajosemarmol@gmail.com"]
 
         send_mail(subject, message, email_from, recipient_list)
 
@@ -486,9 +487,14 @@ def nosotros(request):
     return render(request, "nosotros.html")
 
 
-def PrevioAlumnos(request):
+def previoAlumnos(request):
     
     return render(request, "previoAlumnos.html")
+
+def previoProfesores(request):
+    
+    return render(request, "previoProfesores.html")
+    
 
 
 def padre(request):
@@ -526,3 +532,32 @@ class EliminarNoticia(DeleteView):
     model = Noticias
     template_name = 'eliminarnoticia.html'
     success_url = reverse_lazy('inicio')
+
+
+def busqueda_alumno(request):
+
+    return render(request,"busquedaalumno.html")
+
+
+def resultado_alumno(request):
+
+    if request.GET["actividad"]:
+
+        actividad = request.GET["actividad"]
+
+        alumnos = Alumnos.objects.filter(actividad__icontains=actividad)
+
+        return render(request, "rbusquedaalumno.html",  {"alumnos": alumnos, "actividad": actividad})
+
+    else:
+        mensaje = "No se ingreso parametros de busqueda"
+        return HttpResponse(mensaje)
+
+
+def insertarAvatar(request):
+    try:
+       avatar = Avatar.objects.get(user=request.user.id)
+       return render(request, "padre.html", {"url": avatar.imagen.url})
+
+    except:
+        return render(request, "padre.html")

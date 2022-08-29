@@ -13,16 +13,15 @@
     
     <h3>
 <ul class="section-heading text-white">
-        {% for X in actividades %}
+        {% for x in actividades %}
 
-            <li class="text-left text-white">{{X}}</li>
+            <li class="text-left text-white">{{x}}</li>
 
-        <div class="text-left text-white">
-            <form action="{% url 'eliminaractividad' X.id %}" method="POST">{% csrf_token %}
-                <a class="btn btn-primary" type ="submit">Eliminar</a>
-            </form>
-            
-                <a class="btn btn-primary" href="{% url 'editarActividad' X.id %}">Editar</a>
+        <div class="text-left">
+            <form action="{% url 'eliminaractividad' x.id %}" method="POST">{% csrf_token %}
+                <button class="btn btn-primary" type="submit">Eliminar</button>
+            </form>        
+                <a class="btn btn-primary" href="{% url 'editarActividad' x.id %}">Editar</a>
         </div>
         {% endfor %}
 </ul>

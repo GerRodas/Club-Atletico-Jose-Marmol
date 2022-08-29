@@ -6482,11 +6482,18 @@ textarea.form-control-lg {
   color: #f9fafb;
 }
 
-.link-dark {
+.link-red {
   color:  #e90e08;
 }
-.link-dark:hover, .link-dark:focus {
+.link-red:hover, .link-red:focus {
   color: #e90e48;
+}
+
+.link-dark {
+  color: #212529;
+}
+.link-dark:hover, .link-dark:focus {
+  color: #1a1e21;
 }
 
 .ratio {
@@ -11383,7 +11390,7 @@ p {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
     border: none;
-    background-color: transparent;
+    background-color: #0C6705;
     transition: padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
   }
   #mainNav .navbar-brand {

@@ -1,0 +1,31 @@
+{% extends "padre.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<section class="page-section bg-grass">
+    <div class="text-center">
+        <h2 class="section-heading text-white">Busqueda de socios por actividad realizada</h2>
+    </div>
+    <br>
+        <div class="text-center text-white">
+            <form action="{% url 'resultadoalumno' %}" method='GET'>{% csrf_token %}
+
+            <p class="text-white">Actividad <input type="text" name="actividad" placeholder="Inicialice con mayúscula"></p>
+
+            <input class="btn btn-primary" type="submit" value="Buscar">
+            </form>
+        </div>
+<!--section>
+    <h1 style="color:darkblue">Busqueda de profesores por actividad dictada</h1>
+
+    <form action="{% url 'buscandoprofe' %}" method="GET">{% csrf_token %}
+
+        <p style="color: grey">Actividad <input type="text" name="actividad" placeholder="Inicialice con mayúscula"></p>
+
+        <input type="submit" value="Buscar">
+
+    </form-->
+</section>
+{% endblock %}

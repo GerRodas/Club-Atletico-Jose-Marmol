@@ -12,17 +12,28 @@
         </div>
         <br>
         <br>
-    <div class="text-white">
-        <ul>
-        <form method="POST"> {% csrf_token %}
-            {{form.as_p}}
 
-            <button class="btn btn-primary text-center">Publicar</button>
+    
+    {% if user.is_authenticated %}
+    
+        <div class="text-white">
+            <ul>
+            <form method="POST"> {% csrf_token %}
+                {{form.media}}
+                {{form.as_p}}
 
-        </form>
-        </ul>
+                <button class="btn btn-primary text-center">Publicar</button>
 
-    </div>
+            </form>
+            </ul>
+
+        </div>
+    {% else %}
+
+        <h2 class="text-white text-center">No tenes permisos para escribir un post, y lo sabes</h2>
+        
+    {% endif %}
+        
 
 
     </div>

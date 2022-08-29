@@ -35,7 +35,7 @@ def inicio(request):
     except:
         return render(request, "inicio.html")
 
-
+@login_required
 def alumnos(request):
     
 

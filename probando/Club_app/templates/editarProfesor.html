@@ -2,17 +2,22 @@
 
 {% load static %}
 
-{% block contenidoquecambia %}
-
-<h1 style="color:darkblue">Actividades y turnos</h1>
+{% block contenidoQueCambia %}
+<section class="page-section bg-grass">
+    <div class="text-center">
+        <h2 class="section-heading text-white">Los datos de {{usuario}}</h2>
+        <h3 class="section-heading text-white">Aca podes editarlos</h3>
+    </div>
+    <br>
+    <div class="text-center text-white">
 
 
     <form action="{% url 'editarProfesor' id %}" enctype="multipart/form-data" method="POST">{% csrf_token %}
         
         {{miFormulario.as_p}}
 
-        <input type="submit" value="Guardar">
+        <input class="btn btn-primary" type="submit" value="Guardar">
     
     </form>
- 
+</section>
 {% endblock %}

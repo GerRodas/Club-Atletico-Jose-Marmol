@@ -2,28 +2,37 @@
 
 {% load static %}
 
-{% block contenidoquecambia %}
+{% block contenidoQueCambia %}
 
-<h1 style="color:darkblue">Actividades</h1>
-
-
-<h3>
-<ul>
-    {% for X in actividades %}
-
-        <li>{{X}}</li>
-
-    <div>
-        <form action="{% url 'eliminaractividad' X.id %}" method="POST">{% csrf_token %}
-            <button type ="submit">Eliminar</button>
-        </form>
-        <button>
-            <a href="{% url 'editarActividad' X.id %}">Editar</a>
-        </button>   
-    </div>
-</ul>
-    {% endfor %}
-
+<section class="page-section bg-dark" id="contact">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-white">Actividades</h2>
+            <h3 class="section-heading text-white">Las actividades que pueden hacer en el club</h3>
+        </div>
     
+    <h3>
+<ul class="section-heading text-white">
+        {% for x in actividades %}
+
+            <li class="text-left text-white">{{x}}</li>
+
+        <div class="text-left">
+            <form action="{% url 'eliminaractividad' x.id %}" method="POST">{% csrf_token %}
+                <button class="btn btn-primary" type="submit">Eliminar</button>
+            </form>        
+                <a class="btn btn-primary" href="{% url 'editarActividad' x.id %}">Editar</a>
+        </div>
+        {% endfor %}
+</ul>
+    <div>
+        <div class="text-center">
+
+        <a class="btn btn-primary" href="{% url 'actividades' %}">Ingresar nueva actividad</a>
+
+    </div>
+
+</div>
+</section>    
 
 {% endblock %}

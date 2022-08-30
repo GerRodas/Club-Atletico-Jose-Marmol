@@ -2,9 +2,27 @@
 
 {% load static %}
 
-{% block contenidoquecambia %}
+{% block contenidoQueCambia %}
+<section class="page-section bg-grass">
+    <div class="text-center">
+        <h2 class="section-heading text-white">Editar Socios</h2>
+    </div>
+    <br>
+    <div class="text-center">
+            
+            <form action="{% url 'editarAlumnos' id %}" method="POST">{% csrf_token %}
+                
+                <h4 class="text-white">{{miFormulario.as_p}}</h4>
+    
+                <input class="btn btn-primary" type="submit" value="Guardar">
+            
+            </form>
 
-<h1 style="color:darkblue">Editar alumnos</h1>
+    </div>
+
+</section>
+
+<!--h1 style="color:darkblue">Editar alumnos</h1>
 
 
     <form action="{% url 'editarAlumnos' id %}"  method="POST">{% csrf_token %}
@@ -13,6 +31,6 @@
 
         <input type="submit" value="Guardar">
     
-    </form>
+    </form-->
  
 {% endblock %}

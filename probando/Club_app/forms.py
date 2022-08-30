@@ -1,7 +1,7 @@
 from dataclasses import field, fields
 from django import forms
 
-from .models import Profesores, Avatar
+from .models import Noticias, Profesores, Avatar
 
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.contrib.auth.models import User
@@ -62,3 +62,15 @@ class AvatarFormulario(forms.ModelForm):
     class Meta:
         model=Avatar
         fields=('imagen',)
+
+
+#FALTA DESARROLLAR ESTO, ES PARA ESTILIZAR EL FORM DE LAS NOTICIAS
+class NoticiaFormulario(forms.ModelForm):
+    class Meta:
+        model = Noticias
+        fields = ('titulo', 'autor','cuerpo')
+        widget = {
+            'titulo': forms.TextInput(attrs={'class':'form-control'}),
+            'autor': forms.TextInput(attrs={'class':'form-control'}),
+            'cuerpo': forms.TextInput(attrs={'class':'form-control'}),
+        }

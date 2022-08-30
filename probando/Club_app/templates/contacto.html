@@ -2,20 +2,64 @@
 
 {% load static %}
 
-{% block contenidoquecambia %}
+{% block contenidoQueCambia %}
 
-    <H1>Mensajes al Consejo Directivo</H1>
+<section class="page-section" id="contact">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-white">Mensajes al Consejo Directivo</h2>
+            <h3 class="section-heading text-white">Te contestaran lo antes posible.</h3>
+        </div>
+        <form id="contactForm" action="{% url 'contacto' %}" data-sb-form-api-token="API_TOKEN" method="POST">{% csrf_token %}
+            <div class="row align-items-stretch mb-5">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <!-- Name input-->
+                
+                        
+                    </div>
+                    <div class="form-group">
+                        <!-- Email address input-->
+                        <input class="form-control"  type="email" name="email" placeholder="Email *" data-sb-validations="required,email" />
+                        
+                    </div>
+                    <div class="form-group mb-md-0">
+                        <!-- Phone number input-->
+                        <input class="form-control" type="text" name="asunto" placeholder="Asunto *" data-sb-validations="required" />
+                        
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group form-group-textarea mb-md-0">
+                        <!-- Message input-->
+                        <textarea class="form-control" id="message" name="mensaje" placeholder="Mensaje *" data-sb-validations="required"></textarea>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- Submit Button-->
+            <div class="text-center"><button class="btn btn-primary btn-xl text-uppercase" id="submitButton" type="submit">Enviar</button></div>
+        </form>
+    </div>
+</section>
 
-    <form action="{% url 'contacto' %}" method="POST">{% csrf_token %}
+<!--section class="page-section">
+    <div class="text-center page-section">
+        <H1>Mensajes al Consejo Directivo</H1>
 
-        <p>Asunto: <input type="text" name="asunto"></p>
+        <form action="{% url 'contacto' %}" method="POST">{% csrf_token %}
+            <div class="row align-items-stretch mb-5">
+                <div class="col-md-6">
+                    <div class="form-group">
+                    <p>Asunto: <input type="text" name="asunto"></p>
 
-        <p>Email: <input type="text" name="email"></p>
+                    <p>Email: <input type="text" name="email"></p>
 
-        <p>Mensaje: <textarea name="mensaje" rows="15" cols="45"></textarea></p>
+                    <p>Mensaje: <textarea name="mensaje" rows="10" cols="25"></textarea></p>
 
-        <input type="submit" value="Enviar">
+                    <input type="submit" class="btn btn-warning" value="Enviar">
  
-    </form>
-
+        </form>
+    </div>
+</section>
 {% endblock %}

@@ -2,8 +2,19 @@
 
 {% load static %}
 
-{% block contenidoquecambia %}
+{% block contenidoQueCambia %}
 
-    <H4>{{mensaje}}</H4>
+<header class="masthead">
+    <div class="container">
+        <div class="masthead-subheading">Bienvenido a Club Atlético José Marmol</div>
+        <div class="masthead-heading text-uppercase">Tu barrio, tu club</div>
+        {% if user.is_authenticated %}
+            <h1 class="text-white">{{mensaje}}</h1>
+        {% else %}
+            <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'Login' %}">Iniciar</a>
+        {% endif %}
+        
+    </div>
+</header>
 
 {% endblock %}

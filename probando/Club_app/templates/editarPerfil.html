@@ -2,9 +2,32 @@
 
 {% load static %}
 
-{% block contenidoquecambia %}
+{% block contenidoQueCambia %}
+<section class="page-section bg-grass">
+    <div class="text-center">
+        <h2 class="section-heading text-white">Los datos de {{usuario}}</h2>
+        <h3 class="section-heading text-white">Aca podes editarlos</h3>
+    </div>
+    <br>
+    <div class="text-center">
+            
+            <form method="POST">{% csrf_token %}
+                
+                <h4 class="text-white">{{miFormulario.as_p}}</h4>
+    
+                <input class="btn btn-primary" type="submit" value="Guardar">
+                
+            
+            </form>
+            
+            <br>
+            
+            <a class="btn btn-primary" href=" {% url 'agregaravatar' %} ">Agregar Avatar</a>
+    </div>
 
-<h1>Tus datos {{usuario}}</h1>
+</section>
+
+<!--h1>Tus datos {{usuario}}</h1>
 
     <form method="POST">{% csrf_token %}
         
@@ -12,6 +35,6 @@
 
         <input type="submit" value="Guardar">
     
-    </form>
+    </form-->
  
 {% endblock %}

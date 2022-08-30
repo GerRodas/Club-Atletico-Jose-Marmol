@@ -2,7 +2,9 @@ from distutils.command.upload import upload
 from django.db import models
 
 from django.contrib.auth.models import User
-
+from django.urls import reverse
+from datetime import datetime, date
+from ckeditor.fields import RichTextField
 # Create your models here.
 
 class Alumnos(models.Model):
@@ -51,3 +53,15 @@ class Avatar(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to="avatares", blank=True, null=True)
 
+class Noticias(models.Model):
+    titulo = models.CharField(max_length=60)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    cuerpo = RichTextField(blank=True, null=True)
+    # cuerpo = models.TextField()
+    fechaPublicacion = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.titulo} - {self.autor}"
+
+    def get_absolute_url(self):
+        return reverse('noticias')

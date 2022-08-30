@@ -2,8 +2,23 @@
 
 {% load static %}
 
-{% block contenidoquecambia %}
+{% block contenidoQueCambia %}
 
+<section class="page-section bg-grass">
+    <div class="text-center">
+        <h2 class="section-heading text-white">Busqueda de profesores por actividad dictada</h2>
+        <h3 class="section-heading text-white">Aca podes buscarlos</h3>
+    </div>
+    <br>
+        <div class="text-center text-white">
+            <form action="{% url 'buscandoprofe' %}" method='GET'>{% csrf_token %}
+
+            <p class="text-white">Actividad <input type="text" name="actividad" placeholder="Inicialice con mayúscula"></p>
+
+            <input class="btn btn-primary" type="submit" value="Buscar">
+            </form>
+        </div>
+<!--section>
     <h1 style="color:darkblue">Busqueda de profesores por actividad dictada</h1>
 
     <form action="{% url 'buscandoprofe' %}" method="GET">{% csrf_token %}
@@ -12,6 +27,6 @@
 
         <input type="submit" value="Buscar">
 
-    </form>
-
+    </form-->
+</section>
 {% endblock %}

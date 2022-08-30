@@ -30,3 +30,13 @@ Falta más investigación para poder recerar eso en padre.html y que quede refle
 3- Saltaba un error al querer cargar imagenes en la parte de cargar profesores de la aplicación sin tomar la imágen. La resolución fue al aplicarle el parseo"enctype="multipart/form-data"". Si no se aplica este método, inexplicablemente se queda trabajo y no deja subir datos ni avisar que inconveniente está dando.
 
 4- Para que, al aplicar el ckeditor a el formulario de carga de noticias, no muestre los caracteres de bold, italic y demás adiciones en el código, hubo que aplicarle un código especial a la visualicación, utilicando un código especial de django. El mismo es{{nombre.cuerpo | safe}}. Esto permite decirle a django que el texto es seguro y permite la visualización de las modificaciones, traduciendo las tabulaciones especiales de html.
+
+
+Link a video de demo:
+
+https://www.youtube.com/watch?v=Ck_VwQxVObM
+
+
+
+Aplicación creada con VSC, utlizando Python 3.10.5 y Django 4.0.6. Video creado en camtasia y editado en el Adobe Premiere CC2020.
+ 
